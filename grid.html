@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Semantic Layout</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:1px;
+      padding:0px;
+    }
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      padding:20px;
+    }
+
+    .container{
+      border:2px solid #999;
+      background:white;
+      padding:15px;
+    }
+
+    header{
+      background:#e9a85e;
+      padding:25px;
+      margin-bottom:15px;
+      text-align:center;
+      color:#222;
+    }
+
+    .content{
+      display:flex;
+      gap:15px;
+      margin-bottom:15px;
+    }
+
+    .nav-container{
+      width:220px;
+      background:#9d9d9d;
+      padding:20px;
+      color:white;
+    }
+
+    .nav-container ul{
+      list-style:none;
+      margin-top:15px;
+      display: block;
+    }
+
+    .nav-container li{
+      margin:12px 0;
+      display: block;
+      background-color: #5e5858;
+      border-radius: 5px;
+      height: 30px;
+      padding: 8px;
+    }
+
+    nav a{
+      color:rgb(255, 255, 255);
+      text-decoration:none;
+    }
+
+    main{
+      flex:1;
+      background:#ddd;
+      padding:20px;
+    }
+
+    article{
+      background:white;
+      border:1px solid #888;
+      padding:20px;
+      margin-top:20px;
+    }
+
+    article h2{
+      margin-bottom:10px;
+      color:#333;
+    }
+
+    article p{
+      line-height:1.6;
+      color:#555;
+    }
+
+    footer{
+      background:#e7ac6c;
+      padding:20px;
+      text-align:center;
+      color:white;
+      font-weight:bold;
+    }
+
+    .svg-box{
+      text-align:center;
+      margin-top:15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <h1>My Website</h1>
+      <p>Simple HTML Semantic Layout</p>
+    </header>
+
+    <div class="content">
+
+      <!-- NAVIGATION -->
+      <nav class="nav-container">
+        <h2>Menu</h2>
+
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- MAIN CONTENT -->
+      <main>
+
+        <h2>Welcome to Main Section</h2>
+        <p>
+          This is the main content area of the webpage.
+          Semantic HTML elements make layouts cleaner and easier to understand.
+        </p>
+
+        <!-- ARTICLE 1 -->
+        <article>
+          <h2>Article One</h2>
+          <p>
+            HTML semantic tags improve accessibility and SEO.
+            They clearly describe the purpose of each section.
+          </p>
+        </article>
+
+        <!-- ARTICLE 2 -->
+        <article>
+          <h2>Article Two</h2>
+          <p>
+            CSS Flexbox is used here to align the navigation
+            and main content side by side.
+          </p>
+        </article>
+
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      © 2026 My Website | All Rights Reserved
+    </footer>
+
+  </div>
+
+</body>
+</html>
