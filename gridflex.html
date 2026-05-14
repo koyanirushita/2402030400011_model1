@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(163, 104, 36);
+  border-radius: 10px;
+}
+
+.container div {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 40px;
+  padding: 40px;
+  text-align: center;  
+  font-size: 50px;
+  border-radius: 10px;
+}
+
+.container div:hover{
+    background-color: rgb(225, 155, 120);
+    font-family:'Times New Roman', Times, serif 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 50px; 
+    width: 150px;
+}
+
+.container1{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(163, 104, 36);
+    padding: 10px;
+    gap: 75px;
+}
+.container1 div{
+  background-color: #f1f1f1;
+  padding: 40px;
+  font-size: 50px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.container1 div:hover{
+    background-color: rgb(225, 155, 120);
+    font-family:'Times New Roman', Times, serif 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 50px; 
+    height: 90px;
+}
+h1{
+    background-color: tan;
+    border-radius: 20px;
+    width: 3800px;
+    height: 100px;
+    font-size: 60px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>flex-direction: </h1><br><br>
+
+<div class="container">
+  <div>flex 1</div>
+  <div>flex 2</div>
+  <div>flex 3</div>  
+  <div>flex 4</div>
+  <div>flex 5</div>
+  <div>flex 6</div> 
+</div>
+
+<br><br><br><br><br><br><br>
+
+<h1>grid-direction: </h1><br><br>
+<div class="container1">
+  <div>grid 1</div>
+  <div>grid 2</div>
+  <div>grid 3</div>  
+  <div>grid 4</div>
+  <div>grid 5</div>
+  <div>grid 6</div>  
+</div>
+</body>
+</html>
