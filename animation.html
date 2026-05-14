@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0" />
+    <title>Dynamic Word Spin</title>
+    <style>
+        html {
+            font-size: 48px;
+            font-family:'Times New Roman', Times, serif;
+            background: linear-gradient(to right, rgb(124, 154, 199),rgb(137, 143, 235));
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70px;
+            margin: 30px;
+            padding: 200px;
+        }
+        .container {
+            display: inline-flex;
+            flex-direction: column;
+            height: 125px;
+            overflow:hidden;
+        }
+
+        .container span {
+            height: 150px;
+            color: rgb(214, 55, 122);
+            animation: moveUp 10s linear infinite;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(1.0rem);
+            }
+            25% {
+                transform: translateY(-2.3rem);
+            }
+
+            55% {
+                transform: translateY(-9.6rem);
+            }
+
+            80% {
+                transform: translateY(-1.0rem);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        I love
+        <div class="container">
+            <span >Traveling</span>
+            <span >Scrolling</span>
+            <span >Sleeping</span>
+            <span >Singing</span>
+        </div>
+    </h1>
+</body>
+
+</html>
