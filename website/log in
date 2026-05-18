@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Canteen Login</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(to right,#111827,#1f2937);
+            min-height:100vh;
+        }
+
+        /* HEADER */
+
+        header{
+            width:100%;
+            background:#0f172a;
+            color:white;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .logo i{
+            color:#f59e0b;
+        }
+
+        nav{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            align-items:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#f59e0b;
+        }
+
+        /* SEARCH CONTAINER - SAME STYLE AS MENU/HOME/CART PAGE */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #1f2937;
+            border-radius: 8px;
+            padding: 5px 15px;
+            border: 1px solid #374151;
+            margin-left: 20px;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-container i {
+            color: #f59e0b;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* LOGIN SECTION */
+
+        .container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:85vh;
+            padding:30px;
+        }
+
+        .login-box{
+            width:400px;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.4);
+            animation:slide 1s ease;
+        }
+
+        @keyframes slide{
+            from{
+                transform:translateY(-40px);
+                opacity:0;
+            }
+
+            to{
+                transform:translateY(0);
+                opacity:1;
+            }
+        }
+
+        .login-box h2{
+            text-align:center;
+            margin-bottom:30px;
+            color:#111827;
+            font-size:35px;
+        }
+
+        .input-box{
+            margin-bottom:20px;
+            position:relative;
+        }
+
+        .input-box input{
+            width:100%;
+            padding:15px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:16px;
+            padding-left:45px;
+        }
+
+        .input-box i{
+            position:absolute;
+            left:15px;
+            top:16px;
+            color:#f59e0b;
+            font-size:18px;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:15px;
+            border:none;
+            background:#f59e0b;
+            color:white;
+            font-size:18px;
+            border-radius:10px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-btn:hover{
+            background:#ff8800;
+            transform:scale(1.03);
+        }
+
+        .extra{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        .extra a{
+            color:#f59e0b;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        /* ATTRACTIVE CENTER POPUP */
+
+        .popup{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%) scale(0.5);
+            width:350px;
+            background:white;
+            border-radius:25px;
+            padding:35px 30px;
+            text-align:center;
+            box-shadow:0 15px 40px rgba(0,0,0,0.5);
+            visibility:hidden;
+            opacity:0;
+            transition:0.4s;
+            z-index:9999;
+        }
+
+        .popup.show{
+            visibility:visible;
+            opacity:1;
+            transform:translate(-50%,-50%) scale(1);
+        }
+
+        .popup.success .popup-icon{
+            background:#22c55e;
+        }
+
+        .popup.error .popup-icon{
+            background:#ef4444;
+        }
+
+        .popup-icon{
+            width:90px;
+            height:90px;
+            margin:auto;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:40px;
+            margin-bottom:20px;
+        }
+
+        .popup h2{
+            font-size:30px;
+            margin-bottom:15px;
+            color:#111827;
+        }
+
+        .popup p{
+            color:#555;
+            font-size:17px;
+            line-height:1.6;
+            margin-bottom:25px;
+        }
+
+        .popup button{
+            padding:12px 30px;
+            border:none;
+            border-radius:10px;
+            background:#f59e0b;
+            color:white;
+            font-size:17px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .popup button:hover{
+            background:#ff8800;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#111827;
+            color:white;
+            text-align:center;
+            padding:40px 8%;
+        }
+
+        .footer-links{
+            margin-bottom:25px;
+        }
+
+        .footer-links a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .footer-links a:hover{
+            color:#f59e0b;
+        }
+
+        footer h2{
+            font-size:32px;
+            margin-bottom:15px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        .social-icons{
+            margin-top:15px;
+        }
+
+        .social-icons i{
+            font-size:28px;
+            margin:0 12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .social-icons i:hover{
+            color:#f59e0b;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .search-container {
+                margin-left: 0;
+                width: 90%;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+
+            nav a{
+                margin:0 8px;
+                font-size:15px;
+            }
+
+            .login-box{
+                width:100%;
+            }
+
+            .popup{
+                width:90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <i class="fa-solid fa-burger"></i>
+            Smart Canteen
+        </div>
+
+        <nav>
+            <a href="../website/home.html">Home</a>
+            <a href="../website/menu.html">Menu</a>
+            <a href="../website/cart.html">Cart</a>
+            <a href="../website/login.html">Log in</a>
+            
+            <!-- SEARCH CONTAINER WITH REDIRECT LOGIC -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search menu..." onkeydown="redirectToMenu(event)">
+                <i class="fa-solid fa-magnifying-glass" onclick="searchIconClick()"></i>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- LOGIN FORM -->
+
+    <div class="container">
+
+        <div class="login-box">
+
+            <h2>Login</h2>
+
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="Enter Email">
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Enter Password">
+            </div>
+
+            <button class="login-btn" onclick="loginUser()">Login</button>
+
+            <div class="extra">
+                <p>Don't have an account? <a href="#">Register</a></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ATTRACTIVE POPUP -->
+
+    <div id="popup" class="popup">
+
+        <div class="popup-icon" id="popupIcon">
+            <i id="popupIconSymbol" class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h2 id="popupTitle">Success</h2>
+
+        <p id="popupMessage">Login Successful!</p>
+
+        <button onclick="closePopup()">OK</button>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-links">
+            <a href="../website/service.html">Services</a>
+            <a href="../website/aboutus.html">About</a>
+            <a href="../website/contactus.html">Contact</a>
+        </div>
+
+        <h2>Smart Canteen Company</h2>
+
+        <p>Fast and Smart Food Ordering Platform for Students & Companies.</p>
+
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+
+        <p style="margin-top:15px;">© 2026 Smart Canteen. All Rights Reserved.</p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* SEARCH REDIRECT LOGIC */
+        function redirectToMenu(event) {
+            if (event.key === "Enter") {
+                let value = document.getElementById('search-input').value.trim();
+                if(value !== "") {
+                    window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+                }
+            }
+        }
+
+        function searchIconClick() {
+            let value = document.getElementById('search-input').value.trim();
+            if(value !== "") {
+                window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+            }
+        }
+
+        /* LOGIN LOGIC */
+        function showPopup(type, title, message){
+
+            let popup = document.getElementById("popup");
+            let popupTitle = document.getElementById("popupTitle");
+            let popupMessage = document.getElementById("popupMessage");
+            let popupIconSymbol = document.getElementById("popupIconSymbol");
+
+            popup.className = "popup show " + type;
+            popupTitle.innerText = title;
+            popupMessage.innerText = message;
+
+            if(type === "success"){
+                popupIconSymbol.className = "fa-solid fa-circle-check";
+            } else {
+                popupIconSymbol.className = "fa-solid fa-circle-xmark";
+            }
+        }
+
+        function closePopup(){
+            document.getElementById("popup").classList.remove("show");
+        }
+
+        function loginUser(){
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if(email === "" || password === ""){
+                showPopup(
+                    "error",
+                    "Login Failed!",
+                    "Please fill in all required fields."
+                );
+            } else {
+                showPopup(
+                    "success",
+                    "Login Successful!",
+                    "Welcome back to Smart Canteen."
+                );
+            }
+        }
+
+    </script>
+
+</body>
+</html>
