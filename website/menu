@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu - Smart Canteen</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        /* HEADER */
+        header{
+            width:100%;
+            background:#111827;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .logo i{
+            color:#f59e0b;
+        }
+
+        /* SEARCH BAR STYLE */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #1f2937;
+            border-radius: 8px;
+            padding: 5px 15px;
+            border: 1px solid #374151;
+            margin-left: 20px;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-container i {
+            color: #f59e0b;
+            font-size: 18px;
+        }
+
+        nav{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            align-items: center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#f59e0b;
+        }
+
+        /* HERO SECTION */
+        .hero{
+            height:45vh;
+            background:linear-gradient(to right,#111827,#1f2937);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:22px;
+        }
+
+        /* MENU SECTION */
+        .menu-section{
+            padding:80px 8%;
+            text-align:center;
+        }
+
+        .menu-section h2{
+            font-size:45px;
+            color:#111827;
+            margin-bottom:50px;
+        }
+
+        .menu-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:30px;
+        }
+
+        .menu-card{
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .menu-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .menu-card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .menu-card h3{
+            margin-top:20px;
+            font-size:28px;
+            color:#111827;
+        }
+
+        .menu-card p{
+            color:#666;
+            padding:10px 20px;
+            line-height:1.6;
+        }
+
+        .price{
+            display:block;
+            font-size:26px;
+            color:#f59e0b;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+
+        .menu-card button{
+            margin-bottom:25px;
+            padding:12px 28px;
+            border:none;
+            background:#111827;
+            color:white;
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .menu-card button:hover{
+            background:#f59e0b;
+        }
+
+        /* NO RESULTS MESSAGE */
+        #no-results-msg {
+            display: none;
+            font-size: 22px;
+            color: #666;
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+
+        /* POPUP */
+        .popup{
+            width:100%;
+            height:100vh;
+            background:rgba(0,0,0,0.6);
+            position:fixed;
+            top:0;
+            left:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            visibility:hidden;
+            opacity:0;
+            transition:0.3s;
+            z-index:2000;
+        }
+
+        .popup.active{
+            visibility:visible;
+            opacity:1;
+        }
+
+        .popup-box{
+            width:350px;
+            background:white;
+            padding:40px 30px;
+            border-radius:20px;
+            text-align:center;
+            animation:popupAnimation 0.5s ease;
+        }
+
+        @keyframes popupAnimation{
+            from{
+                transform:scale(0.5);
+                opacity:0;
+            }
+            to{
+                transform:scale(1);
+                opacity:1;
+            }
+        }
+
+        .popup-box i{
+            font-size:70px;
+            color:#22c55e;
+            margin-bottom:20px;
+        }
+
+        .popup-box h2{
+            font-size:32px;
+            color:#111827;
+            margin-bottom:15px;
+        }
+
+        .popup-box p{
+            color:#666;
+            font-size:18px;
+            margin-bottom:25px;
+        }
+
+        .popup-box button{
+            padding:12px 35px;
+            border:none;
+            background:#f59e0b;
+            color:white;
+            font-size:18px;
+            border-radius:8px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .popup-box button:hover{
+            background:#ff8800;
+        }
+
+        /* FOOTER */
+        footer{
+            background:#111827;
+            color:white;
+            text-align:center;
+            padding:40px 8%;
+        }
+
+        .footer-links{
+            margin-bottom:25px;
+        }
+
+        .footer-links a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .footer-links a:hover{
+            color:#f59e0b;
+        }
+
+        footer h2{
+            font-size:32px;
+            margin-bottom:15px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        .social-icons{
+            margin-top:15px;
+        }
+
+        .social-icons i{
+            font-size:28px;
+            margin:0 12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .social-icons i:hover{
+            color:#f59e0b;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .search-container {
+                margin-left: 0;
+                width: 90%;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+
+            nav a{
+                margin:0 10px;
+                font-size:16px;
+            }
+
+            .hero h1{
+                font-size:42px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .footer-links a{
+                display:inline-block;
+                margin:8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-burger"></i>
+            Smart Canteen
+        </div>
+
+        <nav>
+            <a href="../website/home.html">Home</a>
+            <a href="../website/menu.html">Menu</a>
+            <a href="../website/cart.html">Cart</a>
+            <a href="../website/login.html">Log in</a>
+            
+            <!-- SEARCH BAR ADDED HERE -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search menu..." onkeyup="filterMenu()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div>
+            <h1>Our Menu</h1>
+            <p>Delicious food made with love and quality ingredients.</p>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section">
+        <h2>Popular Food Items</h2>
+
+        <div class="menu-container" id="menu-container">
+
+            <!-- BURGER -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+                <h3>Burger</h3>
+                <p>Cheesy burger with crispy fries.</p>
+                <span class="price">₹120</span>
+                <button onclick="addToCart('Burger', 120, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- PIZZA -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+                <h3>Pizza</h3>
+                <p>Loaded cheese pizza with toppings.</p>
+                <span class="price">₹250</span>
+                <button onclick="addToCart('Pizza', 250, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- PASTA -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?q=80&w=1200&auto=format&fit=crop">
+                <h3>Pasta</h3>
+                <p>Creamy white sauce pasta.</p>
+                <span class="price">₹180</span>
+                <button onclick="addToCart('Pasta', 180, 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- SANDWICH -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1200&auto=format&fit=crop">
+                <h3>Sandwich</h3>
+                <p>Healthy grilled sandwich.</p>
+                <span class="price">₹90</span>
+                <button onclick="addToCart('Sandwich', 90, 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- COLD DRINK -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop">
+                <h3>Cold Drink</h3>
+                <p>Refreshing cold drink.</p>
+                <span class="price">₹50</span>
+                <button onclick="addToCart('Cold Drink', 50, 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- FRENCH FRIES -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=1200&auto=format&fit=crop">
+                <h3>French Fries</h3>
+                <p>Crispy golden fries.</p>
+                <span class="price">₹80</span>
+                <button onclick="addToCart('French Fries', 80, 'https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- PANEER TIKKA -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1200&auto=format&fit=crop">
+                <h3>Paneer tikka</h3>
+                <p>Hot and spicy veg Paneer tikka.</p>
+                <span class="price">₹100</span>
+                <button onclick="addToCart('Paneer tikka', 100, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- NOODLES -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop">
+                <h3>Noodles</h3>
+                <p>Chinese noodles with vegetables.</p>
+                <span class="price">₹140</span>
+                <button onclick="addToCart('Noodles', 140, 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- DOSA -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1200&auto=format&fit=crop">
+                <h3>Dosa</h3>
+                <p>South Indian crispy dosa.</p>
+                <span class="price">₹110</span>
+                <button onclick="addToCart('Dosa', 110, 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- BIRIYANI -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1200&auto=format&fit=crop">
+                <h3>Biriyani</h3>
+                <p>Spicy Biriyani.</p>
+                <span class="price">₹220</span>
+                <button onclick="addToCart('Biriyani', 220, 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- ICE CREAM -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=1200&auto=format&fit=crop">
+                <h3>Ice Cream</h3>
+                <p>Delicious chocolate ice cream.</p>
+                <span class="price">₹70</span>
+                <button onclick="addToCart('Ice Cream', 70, 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- HOT DOG -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
+                <h3>Hot Dog</h3>
+                <p>Loaded hot dog with cheese.</p>
+                <span class="price">₹130</span>
+                <button onclick="addToCart('Hot Dog', 130, 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop')">Add to Cart</button>
+            </div>
+
+            <!-- NO RESULTS FOUND MESSAGE BOX -->
+            <div id="no-results-msg">No items found matching your search.</div>
+
+        </div>
+    </section>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+        <div class="popup-box">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Added Successfully!</h2>
+            <p id="popup-text">Item added to cart.</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="../website/service.html">Services</a>
+            <a href="../website/aboutus.html">About</a>
+            <a href="../website/contactus.html">Contact</a>
+        </div>
+
+        <h2>Smart Canteen Company</h2>
+        <p>Smart Food Ordering Platform for Students & Companies.</p>
+
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+
+        <p style="margin-top:20px;">© 2026 Smart Canteen. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // SEARCH FILTER FUNCTION
+        function filterMenu() {
+            let input = document.getElementById('search-input').value.toLowerCase();
+            let cards = document.getElementsByClassName('menu-card');
+            let noResultsMsg = document.getElementById('no-results-msg');
+            let hasResults = false;
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                    hasResults = true;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+
+            // If no match found, show message
+            if (hasResults) {
+                noResultsMsg.style.display = "none";
+            } else {
+                noResultsMsg.style.display = "block";
+            }
+        }
+
+        // ADD TO CART FUNCTION
+        function addToCart(name, price, image){
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingItem = cart.find(item => item.name === name);
+
+            if(existingItem){
+                existingItem.quantity += 1;
+            }else{
+                cart.push({
+                    name:name,
+                    price:price,
+                    image:image,
+                    quantity:1
+                });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            document.getElementById("popup").classList.add("active");
+            document.getElementById("popup-text").innerHTML = name + " added to cart successfully!";
+        }
+
+        // CLOSE POPUP FUNCTION
+        function closePopup(){
+            document.getElementById("popup").classList.remove("active");
+        }
+    </script>
+
+</body>
+</html>
