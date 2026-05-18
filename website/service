@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Canteen Services</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        /* HEADER */
+
+        header{
+            width:100%;
+            background:#111827;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .logo i{
+            color:#f59e0b;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#f59e0b;
+        }
+
+        /* HERO */
+
+        .hero{
+            height:50vh;
+            background:linear-gradient(to right,#111827,#1f2937);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:22px;
+            max-width:700px;
+            line-height:1.8;
+        }
+
+        /* SERVICES */
+
+        .services{
+            padding:80px 8%;
+            text-align:center;
+        }
+
+        .services h2{
+            font-size:45px;
+            color:#111827;
+            margin-bottom:50px;
+        }
+
+        .service-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+        }
+
+        .service-box{
+            background:white;
+            padding:40px 25px;
+            border-radius:20px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            transition:0.4s;
+        }
+
+        .service-box:hover{
+            transform:translateY(-10px);
+        }
+
+        .service-box i{
+            font-size:55px;
+            color:#f59e0b;
+            margin-bottom:20px;
+        }
+
+        .service-box h3{
+            font-size:30px;
+            margin-bottom:15px;
+            color:#111827;
+        }
+
+        .service-box p{
+            color:#666;
+            line-height:1.8;
+            margin-bottom:20px;
+        }
+
+        .service-box button{
+            padding:12px 28px;
+            border:none;
+            background:#111827;
+            color:white;
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .service-box button:hover{
+            background:#f59e0b;
+            transform:scale(1.05);
+        }
+
+        /* EXTRA SECTION */
+
+        .extra{
+            padding:80px 8%;
+            background:#111827;
+            color:white;
+            text-align:center;
+        }
+
+        .extra h2{
+            font-size:42px;
+            margin-bottom:25px;
+        }
+
+        .extra p{
+            max-width:850px;
+            margin:auto;
+            line-height:1.8;
+            font-size:20px;
+            color:#ddd;
+        }
+
+        /* ATTRACTIVE POPUP */
+
+        .popup{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100vh;
+            background:rgba(0,0,0,0.7);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            visibility:hidden;
+            opacity:0;
+            transition:0.4s;
+            z-index:9999;
+        }
+
+        .popup.show{
+            visibility:visible;
+            opacity:1;
+        }
+
+        .popup-box{
+            width:400px;
+            background:white;
+            padding:40px 30px;
+            border-radius:25px;
+            text-align:center;
+            transform:scale(0.5);
+            transition:0.4s;
+            box-shadow:0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .popup.show .popup-box{
+            transform:scale(1);
+        }
+
+        .popup-box i{
+            width:90px;
+            height:90px;
+            background:#f59e0b;
+            color:white;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:auto;
+            font-size:40px;
+            margin-bottom:20px;
+        }
+
+        .popup-box h2{
+            font-size:35px;
+            color:#111827;
+            margin-bottom:15px;
+        }
+
+        .popup-box p{
+            font-size:18px;
+            color:#555;
+            line-height:1.8;
+            margin-bottom:25px;
+        }
+
+        .popup-box button{
+            padding:12px 30px;
+            border:none;
+            background:#111827;
+            color:white;
+            border-radius:10px;
+            font-size:17px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .popup-box button:hover{
+            background:#f59e0b;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#0f172a;
+            color:white;
+            text-align:center;
+            padding:40px 8%;
+        }
+
+        footer h2{
+            font-size:32px;
+            margin-bottom:15px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        .social-icons{
+            margin-top:15px;
+        }
+
+        .social-icons i{
+            font-size:28px;
+            margin:0 12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .social-icons i:hover{
+            color:#f59e0b;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            nav a{
+                margin:0 10px;
+                font-size:16px;
+            }
+
+            .hero h1{
+                font-size:42px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .popup-box{
+                width:90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <i class="fa-solid fa-burger"></i>
+            Smart Canteen
+        </div>
+
+        <nav>
+            <a href="../website/home.html">Home</a>
+            <a href="../website/menu.html">Menu</a>
+            <a href="../website/service.html">Services</a>
+            <a href="../website/aboutus.html">About</a>
+            <a href="../website/contactus.html">Contact</a>
+            <a href="../website/cart.html">Cart</a>
+            <a href="../website/billing.html">Bill</a>
+            <a href="../website/payment.html">Payment</a>
+            <a href="../website/login.html">Log in</a>
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div>
+
+            <h1>Our Services</h1>
+
+            <p>
+                Smart Canteen provides fast, hygienic,
+                and smart food ordering services for
+                students and employees.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICES SECTION -->
+
+    <section class="services">
+
+        <h2>What We Provide</h2>
+
+        <div class="service-container">
+
+            <!-- SERVICE 1 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <h3>Fast Delivery</h3>
+
+                <p>
+                    Quick food delivery inside campus
+                    without waiting in long queues.
+                </p>
+
+                <button onclick="showService(
+                'Fast Delivery',
+                'Get your food delivered quickly inside the campus without any delay.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+            <!-- SERVICE 2 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-mobile-screen"></i>
+
+                <h3>Online Ordering</h3>
+
+                <p>
+                    Easy online food ordering system
+                    with a smooth digital experience.
+                </p>
+
+                <button onclick="showService(
+                'Online Ordering',
+                'Order your favorite food online with a fast and smooth experience.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+            <!-- SERVICE 3 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-utensils"></i>
+
+                <h3>Fresh Food</h3>
+
+                <p>
+                    Delicious and hygienic food prepared
+                    with high-quality ingredients.
+                </p>
+
+                <button onclick="showService(
+                'Fresh Food',
+                'Enjoy healthy, hygienic and freshly prepared delicious meals.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+            <!-- SERVICE 4 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <h3>Online Payment</h3>
+
+                <p>
+                    Secure online payment system
+                    for hassle-free transactions.
+                </p>
+
+                <button onclick="showService(
+                'Online Payment',
+                'Make secure and hassle-free online payments anytime.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+            <!-- SERVICE 5 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <h3>24/7 Support</h3>
+
+                <p>
+                    Customer support available to help
+                    students anytime.
+                </p>
+
+                <button onclick="showService(
+                '24/7 Support',
+                'Our support team is always available to help students anytime.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+            <!-- SERVICE 6 -->
+
+            <div class="service-box">
+
+                <i class="fa-solid fa-star"></i>
+
+                <h3>Best Quality</h3>
+
+                <p>
+                    We maintain top-quality food
+                    and excellent customer service.
+                </p>
+
+                <button onclick="showService(
+                'Best Quality',
+                'We provide top-quality food and excellent customer service.')">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- EXTRA SECTION -->
+
+    <section class="extra">
+
+        <h2>Why Smart Canteen?</h2>
+
+        <p>
+            Smart Canteen is designed to make food ordering
+            faster and easier for students and employees.
+            Our platform saves time, reduces crowding,
+            and provides a smooth digital canteen experience.
+        </p>
+
+    </section>
+
+    <!-- ATTRACTIVE POPUP -->
+
+    <div class="popup" id="popup">
+
+        <div class="popup-box">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <h2 id="popupTitle">
+                Service Name
+            </h2>
+
+            <p id="popupMessage">
+                Service details will appear here.
+            </p>
+
+            <button onclick="closePopup()">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h2>Smart Canteen Company</h2>
+
+        <p>
+            Smart Food Ordering Platform for Colleges & Companies.
+        </p>
+
+        <div class="social-icons">
+
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+
+        </div>
+
+        <p style="margin-top:20px;">
+            © 2026 Smart Canteen. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function showService(title, message){
+
+            document.getElementById("popupTitle")
+            .innerText = title;
+
+            document.getElementById("popupMessage")
+            .innerText = message;
+
+            document.getElementById("popup")
+            .classList.add("show");
+        }
+
+        function closePopup(){
+
+            document.getElementById("popup")
+            .classList.remove("show");
+        }
+
+    </script>
+
+</body>
+</html>
