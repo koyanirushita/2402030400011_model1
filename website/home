@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Canteen Home Page</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#f5f5f5;
+        }
+
+        /* HEADER */
+
+        header{
+            width:100%;
+            background:#111827;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            flex-wrap:wrap;
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .logo i{
+            color:#f59e0b;
+        }
+
+        nav{
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            justify-content:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#f59e0b;
+        }
+
+        /* SEARCH CONTAINER - MENU PAGE JETLI J SAME STYLE */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #1f2937;
+            border-radius: 8px;
+            padding: 5px 15px;
+            border: 1px solid #374151;
+            margin-left: 20px;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-container i {
+            color: #f59e0b;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero{
+            min-height:90vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:50px 8%;
+            background:linear-gradient(to right,#111827,#1f2937);
+            color:white;
+            flex-wrap:wrap;
+            gap:50px;
+        }
+
+        .hero-text{
+            flex:1;
+        }
+
+        .hero-text h1{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        .hero-text p{
+            font-size:20px;
+            line-height:1.8;
+            margin-bottom:25px;
+        }
+
+        .hero-text button{
+            padding:15px 35px;
+            border:none;
+            background:#f59e0b;
+            color:white;
+            font-size:18px;
+            border-radius:10px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .hero-text button:hover{
+            background:#ff8800;
+        }
+
+        .hero-image{
+            flex:1;
+            text-align:center;
+        }
+
+        .hero-image img{
+            width:100%;
+            max-width:500px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.5);
+            animation:float 3s infinite ease-in-out;
+        }
+
+        @keyframes float{
+            0%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-15px);
+            }
+            100%{
+                transform:translateY(0);
+            }
+        }
+
+        /* FEATURES */
+
+        .features{
+            padding:80px 8%;
+            text-align:center;
+        }
+
+        .features h2{
+            font-size:42px;
+            margin-bottom:50px;
+            color:#111827;
+        }
+
+        .feature-boxes{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:30px;
+        }
+
+        .feature {
+            background:white;
+            padding:40px 20px;
+            border-radius:20px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .feature:hover{
+            transform:translateY(-10px);
+        }
+
+        .feature i{
+            font-size:50px;
+            color:#f59e0b;
+            margin-bottom:20px;
+        }
+
+        .feature h3{
+            margin-bottom:15px;
+            font-size:28px;
+        }
+
+        .feature p{
+            color:#666;
+            line-height:1.6;
+        }
+
+        /* FOOD SECTION */
+
+        .food-section{
+            padding:80px 8%;
+            background:#111827;
+            color:white;
+            text-align:center;
+        }
+
+        .food-section h2{
+            font-size:42px;
+            margin-bottom:50px;
+        }
+
+        .food-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:30px;
+        }
+
+        .food-card{
+            background:#1f2937;
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.3s;
+        }
+
+        .food-card:hover{
+            transform:scale(1.05);
+        }
+
+        .food-card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .food-card h3{
+            margin:15px 0;
+            font-size:28px;
+        }
+
+        .food-card p{
+            padding:0 15px;
+            color:#ccc;
+        }
+
+        .food-card button{
+            margin:20px;
+            padding:12px 25px;
+            border:none;
+            background:#f59e0b;
+            color:white;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .food-card button:hover{
+            background:#ff8800;
+        }
+
+        /* ABOUT */
+
+        .about{
+            padding:80px 8%;
+            text-align:center;
+            background:white;
+        }
+
+        .about h2{
+            font-size:42px;
+            margin-bottom:25px;
+        }
+
+        .about p{
+            max-width:850px;
+            margin:auto;
+            font-size:20px;
+            line-height:1.8;
+            color:#555;
+        }
+
+        /* NEW ATTRACTIVE CENTER POPUP STYLE */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s ease;
+            z-index: 2000;
+        }
+
+        .popup-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .popup-box {
+            width: 380px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.7);
+            transition: 0.3s ease;
+        }
+
+        .popup-overlay.show .popup-box {
+            transform: scale(1);
+        }
+
+        .popup-box i {
+            font-size: 70px;
+            color: #22c55e;
+            margin-bottom: 20px;
+        }
+
+        .popup-box h2 {
+            font-size: 32px;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .popup-box p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .popup-box button {
+            padding: 12px 35px;
+            border: none;
+            background: #f59e0b;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .popup-box button:hover {
+            background: #ff8800;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#111827;
+            color:white;
+            text-align:center;
+            padding:40px 8%;
+        }
+
+        .footer-links{
+            margin-bottom:25px;
+        }
+
+        .footer-links a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .footer-links a:hover{
+            color:#f59e0b;
+        }
+
+        footer h2{
+            font-size:32px;
+            margin-bottom:15px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        .social-icons{
+            margin-top:15px;
+        }
+
+        .social-icons i{
+            font-size:28px;
+            margin:0 12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .social-icons i:hover{
+            color:#f59e0b;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .search-container {
+                margin-left: 0;
+                width: 90%;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+
+            nav a{
+                margin:10px;
+                font-size:16px;
+            }
+
+            .hero-text h1{
+                font-size:42px;
+            }
+
+            .hero-text p{
+                font-size:18px;
+            }
+
+            .popup-box {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <i class="fa-solid fa-burger"></i>
+            Smart Canteen
+        </div>
+
+        <nav>
+
+            <a href="../website/home.html">Home</a>
+            <a href="../website/menu.html">Menu</a>
+            <a href="../website/cart.html">Cart</a>
+            <a href="../website/login.html">Log in</a>
+            
+            <!-- SEARCH CONTAINER - ENTER TAYP KARVA THI MENU PAGE PR RIDIRECT THASE -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search menu..." onkeydown="redirectToMenu(event)">
+                <i class="fa-solid fa-magnifying-glass" onclick="searchIconClick()"></i>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>Delicious Food Delivered Fast</h1>
+
+            <p>
+                Smart Canteen helps students and employees
+                order food online quickly without waiting in long queues.
+            </p>
+
+            <button onclick="orderNow()" >
+                Order Now
+            </button>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop">
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <h2>Why Choose Us?</h2>
+
+        <div class="feature-boxes">
+
+            <div class="feature">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <h3>Fast Service</h3>
+
+                <p>
+                    Get your food quickly without waiting.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-utensils"></i>
+
+                <h3>Tasty Food</h3>
+
+                <p>
+                    Fresh and hygienic meals every day.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-mobile-screen"></i>
+
+                <h3>Easy Ordering</h3>
+
+                <p>
+                    Simple online ordering with smart UI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOD SECTION -->
+
+    <section class="food-section">
+
+        <h2>Popular Food Items</h2>
+
+        <div class="food-container">
+
+            <div class="food-card">
+
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+
+                <h3>Burger</h3>
+
+                <p>Cheesy burger with crispy fries.</p>
+
+                <button onclick="addFood('Burger')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+            <div class="food-card">
+
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+
+                <h3>Pizza</h3>
+
+                <p>Loaded cheese pizza with toppings.</p>
+
+                <button onclick="addFood('Pizza')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+            <div class="food-card">
+
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop">
+
+                <h3>Pasta</h3>
+
+                <p>Creamy white sauce pasta.</p>
+
+                <button onclick="addFood('Pasta')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about">
+
+        <h2>About Smart Canteen</h2>
+
+        <p>
+            Smart Canteen is a modern online food ordering
+            platform designed for colleges and companies.
+            It helps users save time and enjoy delicious food
+            with a smart digital experience.
+        </p>
+
+    </section>
+
+    <!-- ATTRACTIVE CENTER POPUP MODAL -->
+    <div class="popup-overlay" id="orderPopup">
+        <div class="popup-box">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Welcome!</h2>
+            <p>Welcome to Smart Canteen.<br>Let's find some delicious food for you!</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-links">
+
+            <a href="../website/service.html">Services</a>
+            <a href="../website/aboutus.html">About</a>
+            <a href="../website/contactus.html">Contact</a>
+
+        </div>
+
+        <h2>Smart Canteen Company</h2>
+
+        <p>
+            Smart Food Ordering Platform for Students & Employees.
+        </p>
+
+        <div class="social-icons">
+
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+
+        </div>
+
+        <p style="margin-top:20px;">
+            © 2026 Smart Canteen. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // NAVIGATION LOGIC TO MENU.HTML
+        function redirectToMenu(event) {
+            if (event.key === "Enter") {
+                let value = document.getElementById('search-input').value.trim();
+                if(value !== "") {
+                    window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+                }
+            }
+        }
+
+        function searchIconClick() {
+            let value = document.getElementById('search-input').value.trim();
+            if(value !== "") {
+                window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+            }
+        }
+
+        // SHOW POPUP OVERLAY
+        function orderNow(){
+            document.getElementById("orderPopup").classList.add("show");
+        }
+
+        // CLOSE POPUP OVERLAY
+        function closePopup(){
+            document.getElementById("orderPopup").classList.remove("show");
+        }
+
+        function addFood(food){
+            alert(food + " added to cart!");
+        }
+
+    </script>
+
+</body>
+</html>
