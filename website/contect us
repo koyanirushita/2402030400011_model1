@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - Smart Canteen</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        /* HEADER */
+
+        header{
+            width:100%;
+            background:#111827;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .logo i{
+            color:#f59e0b;
+        }
+
+        nav{
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            justify-content:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#f59e0b;
+        }
+
+        /* SEARCH CONTAINER - SAME STYLE AS OTHER PAGES */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #1f2937;
+            border-radius: 8px;
+            padding: 5px 15px;
+            border: 1px solid #374151;
+            margin-left: 20px;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-container i {
+            color: #f59e0b;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero{
+            height:45vh;
+            background:linear-gradient(to right,#111827,#1f2937);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:22px;
+        }
+
+        /* CONTACT BOXES */
+
+        .contact-section{
+            padding:80px 8%;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+        }
+
+        .contact-box{
+            background:white;
+            padding:40px 25px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .contact-box:hover{
+            transform:translateY(-10px);
+        }
+
+        .contact-box i{
+            width:80px;
+            height:80px;
+            background:#f59e0b;
+            color:white;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:auto;
+            font-size:35px;
+            margin-bottom:25px;
+        }
+
+        .contact-box h2{
+            color:#111827;
+            margin-bottom:15px;
+            font-size:30px;
+        }
+
+        .contact-box p{
+            color:#666;
+            font-size:18px;
+            line-height:1.8;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#111827;
+            color:white;
+            text-align:center;
+            padding:40px 8%;
+        }
+
+        .footer-links{
+            margin-bottom:25px;
+        }
+
+        .footer-links a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .footer-links a:hover{
+            color:#f59e0b;
+        }
+
+        footer h2{
+            font-size:32px;
+            margin-bottom:15px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        .social-icons{
+            margin-top:15px;
+        }
+
+        .social-icons i{
+            font-size:28px;
+            margin:0 12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .social-icons i:hover{
+            color:#f59e0b;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .search-container {
+                margin-left: 0;
+                width: 90%;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+
+            nav a{
+                margin:0 10px;
+                font-size:16px;
+            }
+
+            .hero h1{
+                font-size:42px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .footer-links a{
+                display:inline-block;
+                margin:8px 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <i class="fa-solid fa-burger"></i>
+            Smart Canteen
+        </div>
+
+        <nav>
+            <a href="../website/home.html">Home</a>
+            <a href="../website/menu.html">Menu</a>
+            <a href="../website/cart.html">Cart</a>
+            <a href="../website/login.html">Log in</a>
+            
+            <!-- SEARCH CONTAINER WITH REDIRECT LOGIC -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search menu..." onkeydown="redirectToMenu(event)">
+                <i class="fa-solid fa-magnifying-glass" onclick="searchIconClick()"></i>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div>
+            <h1>Contact Us</h1>
+            <p>We are always ready to help you.</p>
+        </div>
+
+    </section>
+
+    <!-- CONTACT BOXES -->
+
+    <section class="contact-section">
+
+        <!-- PHONE -->
+
+        <div class="contact-box">
+            <i class="fa-solid fa-phone"></i>
+            <h2>Phone Number</h2>
+            <p>+91 9876543210</p>
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="contact-box">
+            <i class="fa-solid fa-envelope"></i>
+            <h2>Email Address</h2>
+            <p>smartcanteen@gmail.com</p>
+        </div>
+
+        <!-- ADDRESS -->
+
+        <div class="contact-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <h2>Office Address</h2>
+            <p>Ahmedabad, Gujarat, India</p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-links">
+            <a href="../website/service.html">Services</a>
+            <a href="../website/aboutus.html">About</a>
+            <a href="../website/contactus.html">Contact</a>
+        </div>
+
+        <h2>Smart Canteen Company</h2>
+
+        <p>Smart Food Ordering Platform for Students & Companies.</p>
+
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+
+        <p style="margin-top:20px;">© 2026 Smart Canteen. All Rights Reserved.</p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* SEARCH REDIRECT LOGIC */
+        function redirectToMenu(event) {
+            if (event.key === "Enter") {
+                let value = document.getElementById('search-input').value.trim();
+                if(value !== "") {
+                    window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+                }
+            }
+        }
+
+        function searchIconClick() {
+            let value = document.getElementById('search-input').value.trim();
+            if(value !== "") {
+                window.location.href = "../website/menu.html?search=" + encodeURIComponent(value);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
