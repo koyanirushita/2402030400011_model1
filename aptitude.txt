@@ -1,0 +1,9 @@
+(1)speed = 100 km/hr
+
+(2)costprice = 450.1
+
+(3)2,6,12,20,30,42
+
+(4)GMPXFS
+
+(5)24 years
